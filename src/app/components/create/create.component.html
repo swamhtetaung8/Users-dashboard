@@ -2,7 +2,7 @@
 
 <div *ngIf="success" class="alert alert-success alert-dismissible fade show" role="alert">
   User created successfully <strong routerLink="/" style="cursor: pointer; text-decoration: underline;">Go to users</strong>
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="closeAlert()" aria-label="Close"></button>
 </div>
 
 <form #submitForm="ngForm" (submit)="onSubmit(submitForm)">

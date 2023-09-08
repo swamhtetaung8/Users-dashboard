@@ -21,4 +21,8 @@ export class CreateComponent {
     });
   }
 
+  closeAlert(){
+    this.success=false;
+  }
+
 }

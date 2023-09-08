@@ -24,6 +24,10 @@ export class UserService {
     return this.http.get<IUser>(this.apiUrl+`/${userId}`);
   }
 
+  updateUser(userId:number,user:IUser):Observable<IUser>{
+    return this.http.put<IUser>(this.apiUrl+`/${userId}`,user);
+  }
+
   deleteUser(userId:number):Observable<any>{
     return this.http.delete<any>(this.apiUrl+`/${userId}`);
   }
