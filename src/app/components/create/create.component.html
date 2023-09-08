@@ -1,0 +1,47 @@
+<h1 class=" mb-5">Create User</h1>
+
+<div *ngIf="success" class="alert alert-success alert-dismissible fade show" role="alert">
+  User created successfully <strong routerLink="/" style="cursor: pointer; text-decoration: underline;">Go to users</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<form #submitForm="ngForm" (submit)="onSubmit(submitForm)">
+  <div class="row mb-2">
+    <div class="col-md-6">
+      <label for="" class=" form-label">First Name</label>
+      <input type="text" required minlength="2" [class.is-invalid]="firstname.invalid && firstname.touched" class=" form-control" name="firstName" #firstname="ngModel" [(ngModel)]="user.firstName">
+      <div class=" invalid-feedback" *ngIf=" firstname.invalid && firstname.touched">
+        <p *ngIf="firstname.errors?.['required']">First name is required</p>
+        <p *ngIf="firstname.errors?.['minlength']">First name must be at least 2 characters</p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="" class=" form-label">Last Name</label>
+      <input type="text" required minlength="2" [class.is-invalid]="lastname.invalid && lastname.touched" class=" form-control" name="lastName" #lastname="ngModel" [(ngModel)]="user.lastName">
+      <div class=" invalid-feedback" *ngIf=" lastname.invalid && lastname.touched">
+        <p *ngIf="lastname.errors?.['required']">Last name is required</p>
+        <p *ngIf="lastname.errors?.['minlength']">Last name must be at least 2 characters</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <label for="" class=" form-label">Email</label>
+      <input type="text" class=" form-control" required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" [class.is-invalid]="emailaddress.invalid && emailaddress.touched" name="email" [(ngModel)]="user.email" #emailaddress="ngModel">
+      <div class=" invalid-feedback" *ngIf=" emailaddress.invalid && emailaddress.touched">
+        <p *ngIf="emailaddress.errors?.['required']">Email is required</p>
+        <p *ngIf="emailaddress.errors?.['pattern']">Email must be valid</p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="" class=" form-label">Age</label>
+      <input type="number" class=" form-control" name="age" [(ngModel)]="user.age" required min="16" max="100" [class.is-invalid]="agenum.invalid && agenum.touched" #agenum="ngModel">
+      <div class=" invalid-feedback" *ngIf=" agenum.invalid && agenum.touched">
+        <p *ngIf="agenum.errors?.['required']">Age is required</p>
+        <p *ngIf="agenum.errors?.['min']">Age must be at least 16 years old</p>
+        <p *ngIf="agenum.errors?.['max']">Age must be at most 100 years old</p>
+      </div>
+    </div>
+  </div>
+  <button [disabled]="!submitForm.form.valid" class=" btn btn-secondary mt-4 btn-lg">Create</button>
+</form>

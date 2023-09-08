@@ -1,0 +1,18 @@
+<div *ngIf="user" class=" d-flex w-full justify-content-center align-items-center">
+  <div class="card text-center" style="width: 18rem;">
+    <img src="https://i.pinimg.com/564x/9f/00/af/9f00af501d2d324ac7f8ebb559fc25dd.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{ user.firstName | titlecase }} {{ user.lastName | titlecase }}</h5>
+      <p class="card-text">
+        <small class=" text-muted">{{ user.email }}</small>
+        <br>
+        {{ user.age }} years old
+      </p>
+      <div class=" d-flex justify-content-center gap-3 ">
+        <a routerLink="{{ '/edit-user/'+userId }}" class="btn btn-secondary">Edit</a>
+        <button (click)="deleteUser(userId)" class="btn btn-outline-danger">Delete</button>
+      </div>
+    </div>
+    <a routerLink="/" class=" my-3">Back</a>
+  </div>
+</div>
